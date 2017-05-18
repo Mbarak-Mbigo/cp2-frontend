@@ -14,6 +14,7 @@ import { BucketListComponent } from '../features/bucketlist/bucketlist.component
   declarations: [
     DashboardComponent,
     BucketListComponent
-  ]
+  ],
+  exports: [DashboardComponent],
 })
 export class DashboardModule { }

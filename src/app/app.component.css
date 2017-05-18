@@ -1,6 +1,13 @@
-/*.page-header{
+.page-header{
   border:0px;
   margin: 0px;
   padding: 0px;
   background-color: #040411;
-}*/
+}
+
+h1 {
+  margin: 0;
+  padding: 8px 0;
+  background-color: #303133;
+  color: #999;
+}

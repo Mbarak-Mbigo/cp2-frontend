@@ -25,7 +25,7 @@ export class BucketlistService {
     return this.http.get(this.baseUrl,
       {headers:this.authorizationHeaders()})
       .map((bucketData_response: Response) => bucketData_response.json());
-  }
+  };
 
   getBucketList(bucket_id: Number){
     return this.http.get((this.baseUrl + bucket_id),

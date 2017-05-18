@@ -1,3 +1,28 @@
+<!-- <h3>{{titleBucketList}}</h3> -->
 <div class="container-fluid">
-  {{titleBucketList}}
+  <ul class="thumbnails list-group">
+    <li class="span4 col-md-3 list-group-item" *ngFor='let bucket of allBuckets'>
+      <div class="thumbnail">
+        <img data-src="holder.js/300x200" alt="">
+        <h3>{{bucket.name}}</h3>
+        <!-- <p>Thumbnail caption...</p> -->
+        <span>Created:</span>{{bucket.date_created}}<br />
+        <span>Modified:</span>{{bucket.date_modified}}<br />
+        <!-- <button (click)="goToBucketItems(bucket)" type="button" class="btn btn-primary">View Items</button>
+        <delete-bucketlist (updateBucket)="updateBucketList(bucket.id, $event)" (deleteBucket)="deleteBucketList(bucket.url)"[bucketId]='bucket.id' [bucketName]='bucket.name' [bucketUrl]='bucket.url'></delete-bucketlist> -->
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="">
+  <nav aria-label="...">
+    <ul class="pagination justify-content-center pagination-md">
+      <li class="page-item">
+        <a class="page-link" href="" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="">Next</a>
+      </li>
+    </ul>
+  </nav>
 </div>

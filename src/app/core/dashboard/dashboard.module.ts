@@ -6,6 +6,7 @@ import { dashboardRouting } from '../../approutes/dashboard.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BucketListComponent } from '../features/bucketlist/bucketlist.component';
 import { DashboardnavComponent } from './dashboardnav/dashboardnav.component';
+import { BucketlistService } from '../../shared/services/bucketlist/bucketlist.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DashboardnavComponent } from './dashboardnav/dashboardnav.component';
     BucketListComponent,
     DashboardnavComponent
   ],
+  providers: [BucketlistService],
   exports: [DashboardComponent],
 })
 export class DashboardModule { }

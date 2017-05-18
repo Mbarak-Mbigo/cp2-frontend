@@ -5,7 +5,7 @@ import { RouterModule, Routes }  from '@angular/router';
 import { HomeComponent } from '../core/base/home/home.component';
 import { LoginComponent } from '../core/base/login/login.component';
 import { RegisterComponent } from '../core/base/register/register.component';
-import { PagenotfoundComponent } from '../core/base/pagenotfound/pagenotfound.component';
+import { PageNotFoundComponent } from '../core/base/pagenotfound/pagenotfound.component';
 
 
 // Routes
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path: '**', component: PagenotfoundComponent }
+  {path: '**', component: PageNotFoundComponent }
 ]
 
 // export routes as a module

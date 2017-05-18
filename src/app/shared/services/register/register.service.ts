@@ -31,7 +31,7 @@ export class RegisterService {
         if (accessData) {
           localStorage.setItem('accessToken', accessData['token']);
         }
-      })
+      });
     }
 
 }

@@ -11,6 +11,7 @@ import { RegisterComponent } from './core/base/register/register.component';
 import { LoginComponent } from './core/base/login/login.component';
 import { PageNotFoundComponent } from './core/base/pagenotfound/pagenotfound.component';
 import { DashboardModule } from './core/dashboard/dashboard.module';
+import { AlertComponent } from './core/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,10 @@ import { RegisterComponent } from './core/base/register/register.component';
 import { LoginComponent } from './core/base/login/login.component';
 import { PageNotFoundComponent } from './core/base/pagenotfound/pagenotfound.component';
 import { DashboardModule } from './core/dashboard/dashboard.module';
+import { AlertComponent } from './core/alert/alert.component';
+import { AlertService } from './shared/services/alert/alert.service';
+import { AuthguardService } from './shared/services/authguard/authguard.service';
+import { AuthService } from './shared/services/authservice/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,11 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
     appRouting,
     DashboardModule
   ],
-  providers: [],
+  providers: [
+    AlertService,
+    AuthguardService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

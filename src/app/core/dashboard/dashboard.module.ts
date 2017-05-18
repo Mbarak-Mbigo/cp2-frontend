@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { dashboardRouting } from '../../approutes/dashboard.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BucketListComponent } from '../features/bucketlist/bucketlist.component';
+import { DashboardnavComponent } from './dashboardnav/dashboardnav.component';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { BucketListComponent } from '../features/bucketlist/bucketlist.component
   ],
   declarations: [
     DashboardComponent,
-    BucketListComponent
+    BucketListComponent,
+    DashboardnavComponent
   ],
   exports: [DashboardComponent],
 })

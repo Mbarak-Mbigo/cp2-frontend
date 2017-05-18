@@ -24,6 +24,28 @@ export class BucketListComponent implements OnInit {
     this.bucketlistService.getAllBucketLists()
     .subscribe(bucketData => { this.allBuckets = bucketData['results'];
     console.log(this.allBuckets)});
+  };
+
+  loadBucketItems(bucketUrl: string){
+
+  };
+
+  deleteBucketList(bucketUrl: string){
+    console.log(bucketUrl)
+    this.bucketlistService.deleteBucketList(bucketUrl)
+    .subscribe(responseData => {
+      this.loadBuckets();},
+    responseError => {
+      console.log(responseError)
+    })
+  };
+
+  updateBucketList(){
+
+  };
+
+  createBucketList(){
+    
   }
 
 }

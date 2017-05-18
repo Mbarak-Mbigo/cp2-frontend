@@ -18,7 +18,7 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

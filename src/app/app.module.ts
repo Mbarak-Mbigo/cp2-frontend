@@ -10,6 +10,7 @@ import { HomeComponent } from './core/base/home/home.component';
 import { RegisterComponent } from './core/base/register/register.component';
 import { LoginComponent } from './core/base/login/login.component';
 import { PageNotFoundComponent } from './core/base/pagenotfound/pagenotfound.component';
+import { DashboardModule } from './core/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageNotFoundComponent } from './core/base/pagenotfound/pagenotfound.com
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    appRouting
+    appRouting,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

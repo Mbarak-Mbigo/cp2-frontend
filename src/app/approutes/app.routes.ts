@@ -6,6 +6,7 @@ import { HomeComponent } from '../core/base/home/home.component';
 import { LoginComponent } from '../core/base/login/login.component';
 import { RegisterComponent } from '../core/base/register/register.component';
 import { PageNotFoundComponent } from '../core/base/pagenotfound/pagenotfound.component';
+import { DashboardComponent } from '../core/dashboard/dashboard/dashboard.component';
 
 
 // Routes
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
   {path: '**', component: PageNotFoundComponent }
 ]
 

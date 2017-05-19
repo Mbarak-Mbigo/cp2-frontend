@@ -15,6 +15,8 @@ import { AlertComponent } from './core/alert/alert.component';
 import { AlertService } from './shared/services/alert/alert.service';
 import { AuthguardService } from './shared/services/authguard/authguard.service';
 import { AuthService } from './shared/services/authservice/auth.service';
+import { BucketlistmodalComponent } from './core/features/modals/bucketlistmodal/bucketlistmodal.component';
+import { BucketitemmodalComponent } from './core/features/modals/bucketitemmodal/bucketitemmodal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { AuthService } from './shared/services/authservice/auth.service';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
-    AlertComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

@@ -49,8 +49,13 @@ export class BucketListComponent implements OnInit {
     })
   };
 
-  createBucketList(){
-
+  createBucketList(event: any){
+    this.bucketlistService.createBucketList(event.data)
+    .subscribe(responseData => {
+      this.loadBuckets();},
+    responseError => {
+      console.log(responseError)
+    })
   }
 
 }

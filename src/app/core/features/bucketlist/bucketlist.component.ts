@@ -38,9 +38,9 @@ export class BucketListComponent implements OnInit {
     this.loadBuckets(this.previous)
   };
 
-  loadBucketItems(bucketUrl: string){
-
-  };
+  // loadBucketItems(bucketUrl: string){
+  //   this.bucketlistService.getBucketItems(bucketUrl);
+  // };
 
   deleteBucketList(event: any){
     this.bucketlistService.deleteBucketList(event.data)

@@ -4,7 +4,8 @@
     <li class="span4 col-md-3 list-group-item" *ngFor='let bucket of allBuckets'>
       <div class="thumbnail">
         <img data-src="holder.js/300x200" alt="">
-        <h3>{{bucket.name}}</h3>
+        <h3><a [routerLink]="[bucket.id,'items']">{{bucket.name}}</a></h3>
+        <!-- <h3><a (click)='loadBucketItems(bucket.url)'>{{bucket.name}}</a></h3> -->
         <!-- <p>Thumbnail caption...</p> -->
         <span>Created:</span>{{bucket.date_created}}<br />
         <span>Modified:</span>{{bucket.date_modified}}<br />

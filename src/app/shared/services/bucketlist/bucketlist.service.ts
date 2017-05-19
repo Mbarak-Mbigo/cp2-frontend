@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class BucketlistService {
   private baseUrl = 'http://127.0.0.1:5000/api/v1/bucketlists/';
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private router: Router) { }
 
   authorizationHeaders(){
     // construct authentication headers
@@ -33,11 +34,11 @@ export class BucketlistService {
       .map((bucketData_response: Response) => bucketData_response.json());
   };
 
-  getBucketList(bucket_id: Number){
-    return this.http.get((this.baseUrl + bucket_id),
+  getBucketItems(bucketId: number){
+    let bucketUrl = this.baseUrl + bucketId
+    return this.http.get(bucketUrl,
       {headers: this.authorizationHeaders()})
-      .map((Items_response: Response) => Items_response.json());
-
+      .map((responseData: Response) => responseData.json());
   }
 
   createBucketList(bucketName: string){

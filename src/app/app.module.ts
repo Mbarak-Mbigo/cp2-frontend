@@ -23,7 +23,7 @@ import { AuthService } from './shared/services/authservice/auth.service';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
-    AlertComponent
+    AlertComponent,
   ],
   imports: [
     BrowserModule,

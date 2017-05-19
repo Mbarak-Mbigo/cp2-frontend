@@ -8,8 +8,7 @@
         <!-- <p>Thumbnail caption...</p> -->
         <span>Created:</span>{{bucket.date_created}}<br />
         <span>Modified:</span>{{bucket.date_modified}}<br />
-        <!-- <button (click)="goToBucketItems(bucket)" type="button" class="btn btn-primary">View Items</button>
-        <delete-bucketlist (updateBucket)="updateBucketList(bucket.id, $event)" (deleteBucket)="deleteBucketList(bucket.url)"[bucketId]='bucket.id' [bucketName]='bucket.name' [bucketUrl]='bucket.url'></delete-bucketlist> -->
+        <app-bucketlistmodal (deleteBucket)='deleteBucketList($event)' [bucketUrl]='bucket.url' [bucketName]='bucket.name'></app-bucketlistmodal>
       </div>
     </li>
   </ul>

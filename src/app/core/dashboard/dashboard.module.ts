@@ -18,7 +18,8 @@ import { BucketitemmodalComponent } from '../features/modals/bucketitemmodal/buc
   declarations: [
     DashboardComponent,
     BucketListComponent,
-    DashboardnavComponent
+    DashboardnavComponent,
+    BucketlistmodalComponent
   ],
   providers: [BucketlistService],
   exports: [DashboardComponent],

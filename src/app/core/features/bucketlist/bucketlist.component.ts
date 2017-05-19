@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { BucketlistService } from '../../../shared/services/bucketlist/bucketlist.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
+import { BucketlistmodalComponent } from '../modals/bucketlistmodal/bucketlistmodal.component';
 
 @Component({
   selector: 'app-bucketlist',
@@ -30,9 +31,8 @@ export class BucketListComponent implements OnInit {
 
   };
 
-  deleteBucketList(bucketUrl: string){
-    console.log(bucketUrl)
-    this.bucketlistService.deleteBucketList(bucketUrl)
+  deleteBucketList(event: any){
+    this.bucketlistService.deleteBucketList(event.data)
     .subscribe(responseData => {
       this.loadBuckets();},
     responseError => {
@@ -45,7 +45,7 @@ export class BucketListComponent implements OnInit {
   };
 
   createBucketList(){
-    
+
   }
 
 }

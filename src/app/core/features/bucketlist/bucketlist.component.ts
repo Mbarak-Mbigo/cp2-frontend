@@ -40,8 +40,13 @@ export class BucketListComponent implements OnInit {
     })
   };
 
-  updateBucketList(){
-
+  updateBucketList(event: any){
+    this.bucketlistService.updateBucketList(event.bucketUrl, event.data)
+    .subscribe(responseData => {
+      this.loadBuckets();},
+    responseError => {
+      console.log(responseError)
+    })
   };
 
   createBucketList(){

@@ -24,7 +24,7 @@ export class BucketlistmodalComponent implements OnInit {
   }
 
   updateBucketList(editData: string){
-    this.updateBucket.emit({$event: event, data: editData})
+    this.updateBucket.emit({$event: event, data: editData, bucketUrl: this.bucketUrl})
   }
 
 }

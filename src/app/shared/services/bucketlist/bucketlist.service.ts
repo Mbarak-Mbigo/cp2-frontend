@@ -40,8 +40,8 @@ export class BucketlistService {
       .map((response: Response) => response.json());
   }
 
-  updateBucketList(bucketId: Number, newName: string){
-    return this.http.put((this.baseUrl+bucketId),{'name': newName},
+  updateBucketList(bucketUrl: string, newName: string){
+    return this.http.put(bucketUrl,{'name': newName},
       {headers: this.authorizationHeaders()})
       .map((response: Response) => response.json());
   }

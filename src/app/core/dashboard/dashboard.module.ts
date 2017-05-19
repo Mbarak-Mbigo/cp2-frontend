@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { dashboardRouting } from '../../approutes/dashboard.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BucketListComponent } from '../features/bucketlist/bucketlist.component';
+import { DashboardnavComponent } from './dashboardnav/dashboardnav.component';
+import { BucketlistService } from '../../shared/services/bucketlist/bucketlist.service';
+import { BucketlistmodalComponent } from '../features/modals/bucketlistmodal/bucketlistmodal.component';
+import { BucketitemmodalComponent } from '../features/modals/bucketitemmodal/bucketitemmodal.component';
 
 @NgModule({
   imports: [
@@ -13,8 +17,11 @@ import { BucketListComponent } from '../features/bucketlist/bucketlist.component
   ],
   declarations: [
     DashboardComponent,
-    BucketListComponent
+    BucketListComponent,
+    DashboardnavComponent,
+    BucketlistmodalComponent
   ],
+  providers: [BucketlistService],
   exports: [DashboardComponent],
 })
 export class DashboardModule { }

@@ -21,8 +21,14 @@ export class BucketlistService {
   }
 
   // get all bucketlists
-  getAllBucketLists(){
-    return this.http.get(this.baseUrl,
+  getAllBucketLists(dataUrl?:string){
+    let fetchUrl = dataUrl
+    if (dataUrl){
+      fetchUrl = dataUrl
+    }else{
+      fetchUrl = this.baseUrl
+    }
+    return this.http.get(fetchUrl,
       {headers:this.authorizationHeaders()})
       .map((bucketData_response: Response) => bucketData_response.json());
   };

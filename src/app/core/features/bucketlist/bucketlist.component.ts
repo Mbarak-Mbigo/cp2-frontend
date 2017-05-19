@@ -13,6 +13,8 @@ import { BucketlistmodalComponent } from '../modals/bucketlistmodal/bucketlistmo
 export class BucketListComponent implements OnInit {
   titleBucketList: string = 'My Bucketlists'
   allBuckets: any;
+  next: any;
+  previous: any;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
               private router: Router) { }
@@ -21,10 +23,19 @@ export class BucketListComponent implements OnInit {
     this.loadBuckets()
   }
 
-  loadBuckets(){
-    this.bucketlistService.getAllBucketLists()
+  loadBuckets(dataUrl?:string){
+    this.bucketlistService.getAllBucketLists(dataUrl)
     .subscribe(bucketData => { this.allBuckets = bucketData['results'];
-    console.log(this.allBuckets)});
+    this.next = bucketData.next;
+    this.previous = bucketData.previous;});
+  };
+
+  getNext(){
+    this.loadBuckets(this.next)
+  };
+
+  getPrevious(){
+    this.loadBuckets(this.previous)
   };
 
   loadBucketItems(bucketUrl: string){

@@ -2,6 +2,7 @@
   <h1>
     {{title}}
     <small>Dream and Act</small>
+    <span *ngIf=loginAccess id='login' class="pull-right" (click)=(logOut())><a routerLink='/home' routerLinkActive='active' >Log Out</a></span>
   </h1>
 </div>
 <div class="">

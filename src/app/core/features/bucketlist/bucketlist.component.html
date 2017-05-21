@@ -16,7 +16,7 @@
 </div>
 <div class="">
 
-  <nav aria-label="...">
+  <nav aria-label="..." *ngIf='previous || next'>
     <ul class="pager">
       <li class="pager-item">
         <button [disabled]='!previous' class="btn btn-primary btn-lg" (click)='getPrevious()'><span class="glyphicon glyphicon-hand-left"></span></button>

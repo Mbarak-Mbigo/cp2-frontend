@@ -11,3 +11,17 @@ h1 {
   background-color: #303133;
   color: #999;
 }
+
+#login{
+  margin-right: 3%;
+}
+
+#login a {
+  color: #999;
+  font-size: 0.6em;
+}
+
+#login a:hover{
+  text-decoration: none;
+  color: #fff;
+}

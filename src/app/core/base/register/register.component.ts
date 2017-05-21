@@ -40,7 +40,8 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         responseData => {
           // on successful registration
-          this.alertService.success('Registration successful', true);
+          // this.alertService.success('Registration successful', true);
+          localStorage.setItem('username', this.userRegisterForm.value['username'])
           this.router.navigate(['dashboard'])
         },
         registerError =>{

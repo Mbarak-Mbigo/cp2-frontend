@@ -12,6 +12,7 @@ import { AuthService } from '../../../shared/services/authservice/auth.service';
 })
 export class LoginComponent implements OnInit {
   userLoginForm: FormGroup;
+  user: string;
   loading = false;
   returnUrl: string;
   constructor(
@@ -31,17 +32,21 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
+    this.user = this.userLoginForm.value['username'];
     this.authService.logInUser(this.userLoginForm.value['username'],
                                 this.userLoginForm.value['password'])
       .subscribe(
           responseData => {
             // on successful login
             console.log('login successful')
+            localStorage.setItem('username', this.user);
             this.router.navigate([this.returnUrl]);
+            location.reload();
           },
           registerError =>{
             // on login fail
-            this.alertService.error(registerError);
+            this.alertService.error('Invalid Username or Password');
+            this.user = null;
             this.loading = false;
           });
   }

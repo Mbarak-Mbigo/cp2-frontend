@@ -2,10 +2,11 @@
   <h1>
     {{title}}
     <small>Dream and Act</small>
+    <span *ngIf=currentUser id='login' class="pull-right" (click)=(logOut())><a routerLink='/home' routerLinkActive='active' >Log Out</a></span>
   </h1>
 </div>
 <div class="">
   <!-- root routes outlet -->
-  <app-alert>Alerts section...</app-alert>
+  <app-alert></app-alert>
   <router-outlet></router-outlet>
 </div>

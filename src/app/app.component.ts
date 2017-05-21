@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  currentUser = localStorage.getItem('accessToken');
   title = 'BucketList Application';
+
+  logOut(){
+    console.log('log out called')
+    localStorage.removeItem('accessToken');
+    location.reload();
+  }
 }

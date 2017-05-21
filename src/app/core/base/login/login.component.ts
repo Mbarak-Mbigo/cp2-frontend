@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
             // on successful login
             console.log('login successful')
             this.router.navigate([this.returnUrl]);
+            location.reload();
           },
           registerError =>{
             // on login fail

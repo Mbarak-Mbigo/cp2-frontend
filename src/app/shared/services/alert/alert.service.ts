@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class AlertService {
   private subject = new Subject<any>();
+  private bucketSubject = new Subject<any>();
   private keepAfterNavChange = false;
 
   constructor(private router: Router) {
@@ -38,10 +39,10 @@ export class AlertService {
   }
 
   sendCreateBucketAlert(){
-    this.subject.next({type: 'crud', text: 'create bucketlist'})
+    this.bucketSubject.next({type: 'crud', text: 'create bucketlist'})
   }
 
   alertCreateBucketList(): Observable<any>{
-    return this.subject.asObservable();
+    return this.bucketSubject.asObservable();
   }
 }

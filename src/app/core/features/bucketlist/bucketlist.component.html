@@ -4,23 +4,25 @@
     <li class="span4 col-md-3 list-group-item" *ngFor='let bucket of allBuckets'>
       <div class="thumbnail">
         <img data-src="holder.js/300x200" alt="">
-        <h3>{{bucket.name}}</h3>
+        <h3><a [routerLink]="[bucket.id,'items']">{{bucket.name}}</a></h3>
+        <!-- <h3><a (click)='loadBucketItems(bucket.url)'>{{bucket.name}}</a></h3> -->
         <!-- <p>Thumbnail caption...</p> -->
-        <span>Created:</span>{{bucket.date_created}}<br />
-        <span>Modified:</span>{{bucket.date_modified}}<br />
-        <app-bucketlistmodal (deleteBucket)='deleteBucketList($event)' (updateBucket)='updateBucketList($event)' [bucketUrl]='bucket.url' [bucketName]='bucket.name' [bucketId]='bucket.id'></app-bucketlistmodal>
+        <span>Created:</span>{{bucket.date_created | date: 'longDate'}}<br />
+        <span>Modified:</span>{{bucket.date_modified  | date: 'longDate'}}<br />
+        <app-bucketlistmodal (deleteBucket)='deleteBucketList($event)' (updateBucket)='updateBucketList($event)' (createBucket)='createBucketList($event)' [bucketUrl]='bucket.url' [bucketName]='bucket.name' [bucketId]='bucket.id'></app-bucketlistmodal>
       </div>
     </li>
   </ul>
 </div>
 <div class="">
+
   <nav aria-label="...">
-    <ul class="pagination justify-content-center pagination-md">
-      <li class="page-item">
-        <a class="page-link" href="" tabindex="-1">Previous</a>
+    <ul class="pager">
+      <li class="pager-item">
+        <button [disabled]='!previous' class="btn btn-primary btn-lg" (click)='getPrevious()'><span class="glyphicon glyphicon-hand-left"></span></button>
       </li>
-      <li class="page-item">
-        <a class="page-link" href="">Next</a>
+      <li class="pager-item">
+        <button [disabled]='!next' class="btn btn-primary btn-lg" (click)='getNext()'><span class="glyphicon glyphicon-hand-right"></span></button>
       </li>
     </ul>
   </nav>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
   selector: 'app-dashboardnav',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardnavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertService: AlertService) {}
 
   ngOnInit() {
+  }
+
+  createBucketList(){
+    this.alertService.sendCreateBucketAlert();
+    console.log('sent create signal')
   }
 
 }

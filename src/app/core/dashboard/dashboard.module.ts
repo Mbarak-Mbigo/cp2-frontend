@@ -9,6 +9,7 @@ import { DashboardnavComponent } from './dashboardnav/dashboardnav.component';
 import { BucketlistService } from '../../shared/services/bucketlist/bucketlist.service';
 import { BucketlistmodalComponent } from '../features/modals/bucketlistmodal/bucketlistmodal.component';
 import { BucketitemmodalComponent } from '../features/modals/bucketitemmodal/bucketitemmodal.component';
+import { BucketitemComponent } from '../features/bucketitem/bucketitem.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { BucketitemmodalComponent } from '../features/modals/bucketitemmodal/buc
     DashboardComponent,
     BucketListComponent,
     DashboardnavComponent,
-    BucketlistmodalComponent
+    BucketlistmodalComponent,
+    BucketitemComponent
   ],
   providers: [BucketlistService],
   exports: [DashboardComponent],

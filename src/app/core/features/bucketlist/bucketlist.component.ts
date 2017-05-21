@@ -13,6 +13,8 @@ import { BucketlistmodalComponent } from '../modals/bucketlistmodal/bucketlistmo
 export class BucketListComponent implements OnInit {
   titleBucketList: string = 'My Bucketlists'
   allBuckets: any;
+  next: any;
+  previous: any;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
               private router: Router) { }
@@ -21,15 +23,24 @@ export class BucketListComponent implements OnInit {
     this.loadBuckets()
   }
 
-  loadBuckets(){
-    this.bucketlistService.getAllBucketLists()
+  loadBuckets(dataUrl?:string){
+    this.bucketlistService.getAllBucketLists(dataUrl)
     .subscribe(bucketData => { this.allBuckets = bucketData['results'];
-    console.log(this.allBuckets)});
+    this.next = bucketData.next;
+    this.previous = bucketData.previous;});
   };
 
-  loadBucketItems(bucketUrl: string){
-
+  getNext(){
+    this.loadBuckets(this.next)
   };
+
+  getPrevious(){
+    this.loadBuckets(this.previous)
+  };
+
+  // loadBucketItems(bucketUrl: string){
+  //   this.bucketlistService.getBucketItems(bucketUrl);
+  // };
 
   deleteBucketList(event: any){
     this.bucketlistService.deleteBucketList(event.data)
@@ -49,8 +60,13 @@ export class BucketListComponent implements OnInit {
     })
   };
 
-  createBucketList(){
-
+  createBucketList(event: any){
+    this.bucketlistService.createBucketList(event.data)
+    .subscribe(responseData => {
+      this.loadBuckets();},
+    responseError => {
+      console.log(responseError)
+    })
   }
 
 }

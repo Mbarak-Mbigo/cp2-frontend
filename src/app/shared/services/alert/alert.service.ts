@@ -36,4 +36,12 @@ export class AlertService {
   getMessage(): Observable<any> {
     return this.subject.asObservable();
   }
+
+  sendCreateBucketAlert(){
+    this.subject.next({type: 'crud', text: 'create bucketlist'})
+  }
+
+  alertCreateBucketList(): Observable<any>{
+    return this.subject.asObservable();
+  }
 }

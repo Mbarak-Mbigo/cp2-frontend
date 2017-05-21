@@ -17,5 +17,4 @@ export class DashboardnavComponent implements OnInit {
     this.alertService.sendCreateBucketAlert();
     console.log('sent create signal')
   }
-
 }

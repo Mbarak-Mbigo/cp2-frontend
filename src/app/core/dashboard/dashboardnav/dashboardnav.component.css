@@ -4,3 +4,8 @@
 .navbar-default {
   background-color: #ddd;
 }
+
+#newBucket{
+  margin-top: 6px;
+  padding: 2px;
+}

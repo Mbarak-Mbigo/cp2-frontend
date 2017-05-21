@@ -1,3 +1,37 @@
-<p>
-  bucketitem works!
-</p>
+<div class="">
+  <table class="table" *ngIf='BucketList'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date_Created</th>
+        <th>Date_Modified</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{BucketList.name}}</td>
+        <td>{{BucketList.date_created | date: 'longDate'}}</td>
+        <td>{{BucketList.date_modified | date: 'longDate'}}</td>
+      </tr>
+      <tr>
+  </tbody>
+  </table>
+
+  <div *ngIf="itemsList && !itemsList.length">
+    <p> No Bucket Items Create here</p>
+  </div>
+  <div class="container-fluid" *ngIf='itemsList && itemsList.length'>
+    <ul class="thumbnails list-group" >
+      <li class="span4 col-md-3 list-group-item" *ngFor='let item of itemsList'>
+        <div class="thumbnail">
+          <h4>{{item.name}}</h4>
+          <!-- <p>Thumbnail caption...</p> -->
+          <span>Created:</span>{{item.date_created | date: 'longDate'}}<br />
+          <span>Modified:</span>{{item.date_modified | date: 'longDate'}}<br />
+          <span>Done:</span>{{item.done}}<br />
+          <!-- <modal-buckteItem (updateItem)="updateItem(item.url, $event)" (itemDelete)="deleteItem(itemId)" [itemId]='item.id'[itemName]='item.name' [itemUrl]='item.url'></modal-buckteItem> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

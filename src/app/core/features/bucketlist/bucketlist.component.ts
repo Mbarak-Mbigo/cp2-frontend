@@ -112,11 +112,12 @@ export class BucketListComponent implements OnInit {
     this.bucketlistService.getAllBucketLists(searchUrl)
     .subscribe(searchData =>{
       this.allBuckets = searchData['results'];
-      // this.next = searchData.next;
-      // this.previous = searchData.previous;
+      this.next = searchData.next;
+      this.previous = searchData.previous;
     },
     searchError => {
       this.alertService.error('No results matching your search Query');
+      this.allBuckets = [];
     }
   );
   }

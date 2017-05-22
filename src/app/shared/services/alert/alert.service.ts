@@ -7,6 +7,7 @@ import { Subject } from 'rxjs/Subject';
 export class AlertService {
   private subject = new Subject<any>();
   private bucketSubject = new Subject<any>();
+  private searchSubject = new Subject<any>();
   private keepAfterNavChange = false;
 
   constructor(private router: Router) {
@@ -44,5 +45,13 @@ export class AlertService {
 
   alertCreateBucketList(): Observable<any>{
     return this.bucketSubject.asObservable();
+  }
+
+  sendSearchAlert(searchQuery: string){
+    this.searchSubject.next(searchQuery);
+  }
+
+  alertSearch(): Observable<any>{
+    return this.searchSubject.asObservable();
   }
 }

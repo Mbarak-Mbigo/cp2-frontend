@@ -78,15 +78,15 @@ export class BucketlistService {
   }
 
   searchBucketlists(searchQuery: string){
-    return this.http.get((this.baseUrl + 'q=' + searchQuery),
-      {headers:this.authorizationHeaders()})
-      .map((bucketData_response: Response) => bucketData_response.json());
+    let searchUrl = this.baseUrl + 'q=' + searchQuery;
+    console.log('searching...')
+    this.getAllBucketLists(searchUrl);
   }
 
   udpateStatus(bucketItemUrl: string, status: Boolean){
     return this.http.put(bucketItemUrl, {'done': status},
       {headers: this.authorizationHeaders()})
       .map((response: Response) => response.json());
-  };
+  }
 
 }

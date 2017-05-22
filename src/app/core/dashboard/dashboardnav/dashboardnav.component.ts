@@ -16,6 +16,9 @@ export class DashboardnavComponent implements OnInit {
 
   createBucketList(){
     this.alertService.sendCreateBucketAlert();
-    console.log('sent create signal')
+  }
+
+  searchAlert(searchQuery: string){
+    this.alertService.sendSearchAlert(searchQuery);
   }
 }

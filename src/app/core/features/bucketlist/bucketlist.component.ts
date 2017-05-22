@@ -45,27 +45,31 @@ export class BucketListComponent implements OnInit {
   deleteBucketList(event: any){
     this.bucketlistService.deleteBucketList(event.data)
     .subscribe(responseData => {
-      this.loadBuckets();},
+      this.alertService.success('Bucketlist successfully deleted');
+      this.loadBuckets();
+    },
     responseError => {
-      console.log(responseError)
+      this.alertService.success('Error occurred!');
     })
   };
 
   updateBucketList(event: any){
     this.bucketlistService.updateBucketList(event.bucketUrl, event.data)
     .subscribe(responseData => {
+      this.alertService.success('Bucketlist updated successfully');
       this.loadBuckets();},
     responseError => {
-      console.log(responseError)
+      this.alertService.success('Error occurred!');
     })
   };
 
   createBucketList(event: any){
     this.bucketlistService.createBucketList(event.data)
     .subscribe(responseData => {
+      this.alertService.success('Bucketlist created successfully');
       this.loadBuckets();},
     responseError => {
-      console.log(responseError)
+      this.alertService.success('Error occurred!');
     })
   }
 

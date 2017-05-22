@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       username: [null, [Validators.required]],
       password: [null, [Validators.required]]
     })
-    // // get return url from route parameters or default to '/'
+    // get return url from route parameters or default to '/dashboard'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 

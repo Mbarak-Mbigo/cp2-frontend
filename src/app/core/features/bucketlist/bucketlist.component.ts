@@ -12,9 +12,9 @@ declare var $:any;
   templateUrl: './bucketlist.component.html',
   styleUrls: ['./bucketlist.component.css']
 })
-export class BucketListComponent implements OnInit, AfterContentChecked {
+
+export class BucketListComponent implements OnInit {
   subscription: Subscription;
-  titleBucketList: string = 'My Bucketlists'
   allBuckets: any;
   next: any;
   previous: any;
@@ -38,14 +38,7 @@ export class BucketListComponent implements OnInit, AfterContentChecked {
 
   ngOnInit() {
     this.loadBuckets();
-  }
 
-  ngAfterContentChecked(){
-    if (!this.allBuckets){
-      this.noContent = true;
-    }else{
-      this.noContent = false;
-    }
   }
 
   loadBuckets(dataUrl?:string, search?:boolean){

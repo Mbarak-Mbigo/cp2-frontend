@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 
 @Component({
@@ -6,13 +6,10 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
   templateUrl: './dashboardnav.component.html',
   styleUrls: ['./dashboardnav.component.css']
 })
-export class DashboardnavComponent implements OnInit {
+export class DashboardnavComponent {
   bucketState = localStorage.getItem('bucketState');
   username: string = localStorage.getItem('username');
   constructor(private alertService: AlertService) {}
-
-  ngOnInit() {
-  }
 
   createBucketList(){
     this.alertService.sendCreateBucketAlert();

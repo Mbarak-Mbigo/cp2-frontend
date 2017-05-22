@@ -2,7 +2,6 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AlertService } from '../../../../shared/services/alert/alert.service';
-declare var $:any;
 
 @Component({
   selector: 'app-bucketlistmodal',
@@ -20,27 +19,13 @@ export class BucketlistmodalComponent {
   @Input() bucketUrl: string;
   @Input() bucketName: string;
 
-  constructor(private alertService: AlertService) {
-    // subscribe to alertservice component messages
-    this.subscription = this.alertService.alertCreateBucketList()
-    .subscribe(
-      alertSignal =>{
-        let bucketId = '#createBucket';
-        $(bucketId).modal('show');
-      }
-    )
-  }
+  constructor(private alertService: AlertService) {}
 
   deleteBucketList(bucketUrl: string){
-    this.deleteBucket.emit({$event: event, data: bucketUrl})
+    this.deleteBucket.emit({$event: event, data: bucketUrl});
   }
 
   updateBucketList(editData: string){
-    this.updateBucket.emit({$event: event, data: editData, bucketUrl: this.bucketUrl})
+    this.updateBucket.emit({$event: event, data: editData, bucketUrl: this.bucketUrl});
   }
-
-  createBucketList(data: string){
-    this.createBucket.emit({$event: event, data: data})
-  }
-
 }

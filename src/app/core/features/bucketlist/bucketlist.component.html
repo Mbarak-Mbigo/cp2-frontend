@@ -10,6 +10,9 @@
       </div>
     </li>
   </ul>
+  <div *ngIf=!allBuckets class="row alert-warning text-center col-md-6 col-md-offset-3">
+    <h4>You do not have bucketLists click <strong>New BucketList</strong> to create </h4>
+  </div>
 </div>
 <div>
   <nav aria-label="..." *ngIf='previous || next'>
@@ -22,4 +25,33 @@
       </li>
     </ul>
   </nav>
+</div>
+
+<!-- Create bucketlist -->
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="createBucket" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create Bucketlist</h4>
+        </div>
+        <div class="modal-body">
+          <!-- <form> -->
+            <div class="input-group">
+              <span class="input-group-addon">BucketList Name :</span>
+              <input id="msg" type="text" class="form-control" name="msg" #inputData placeholder="Enter Name" autofocus>
+            </div>
+          <!-- </form> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" (click)='createBucketList(inputData.value)'  data-dismiss="modal">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

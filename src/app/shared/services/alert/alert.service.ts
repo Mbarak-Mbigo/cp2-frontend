@@ -40,7 +40,7 @@ export class AlertService {
   }
 
   sendCreateBucketAlert(){
-    this.bucketSubject.next({type: 'crud', text: 'create bucketlist'})
+    this.bucketSubject.next({type: 'crud', text: 'create bucketlist'});
   }
 
   alertCreateBucketList(): Observable<any>{

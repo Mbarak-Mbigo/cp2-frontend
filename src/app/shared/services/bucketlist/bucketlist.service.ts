@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Router } from '@angular/router';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class BucketlistService {
@@ -22,7 +26,7 @@ export class BucketlistService {
   }
 
   // get all bucketlists
-  getAllBucketLists(dataUrl?:string){
+  getAllBucketLists(dataUrl?:string) {
     let fetchUrl = dataUrl
     if (dataUrl){
       fetchUrl = dataUrl
@@ -31,7 +35,12 @@ export class BucketlistService {
     }
     return this.http.get(fetchUrl,
       {headers:this.authorizationHeaders()})
-      .map((bucketData_response: Response) => bucketData_response.json());
+      .map((responseData: Response) => {
+        return responseData.json();
+      },
+        errorResponse => {
+          this.errorHandler(errorResponse)
+        }).catch(this.errorHandler)
   };
 
   getBucketItems(bucketId: number){
@@ -77,16 +86,14 @@ export class BucketlistService {
       .map((response: Response) => response.json());
   }
 
-  searchBucketlists(searchQuery: string){
-    let searchUrl = this.baseUrl + 'q=' + searchQuery;
-    console.log('searching...')
-    this.getAllBucketLists(searchUrl);
-  }
-
   udpateStatus(bucketItemUrl: string, status: Boolean){
     return this.http.put(bucketItemUrl, {'done': status},
       {headers: this.authorizationHeaders()})
       .map((response: Response) => response.json());
+  }
+
+  private errorHandler(error: Response){
+    return Observable.throw(error || 'Server Error');
   }
 
 }

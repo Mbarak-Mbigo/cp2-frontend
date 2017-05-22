@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, AfterContentChecked } from "@angular/core";
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,11 +12,13 @@ declare var $:any;
   templateUrl: './bucketlist.component.html',
   styleUrls: ['./bucketlist.component.css']
 })
+
 export class BucketListComponent implements OnInit {
   subscription: Subscription;
   allBuckets: any;
   next: any;
   previous: any;
+  noContent: Boolean = false;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
               private router: Router) {
@@ -36,6 +38,7 @@ export class BucketListComponent implements OnInit {
 
   ngOnInit() {
     this.loadBuckets();
+
   }
 
   loadBuckets(dataUrl?:string, search?:boolean){

@@ -29,7 +29,11 @@
       <li class="span4 col-md-3 list-group-item" *ngFor='let item of itemsList'>
         <div class="thumbnail">
           <h4>{{item.name}}</h4>
-          <!-- <p>Thumbnail caption...</p> -->
+          <!-- Rounded switch -->
+          <label class="switch">
+            <input (click)='updateStatus(item.url, item.done)' type="checkbox">
+            <div class="slider round"></div>
+          </label> <br />
           <span>Created:</span>{{item.date_created | date: 'longDate'}}<br />
           <span>Modified:</span>{{item.date_modified | date: 'longDate'}}<br />
           <span>Done:</span>{{item.done}}<br />

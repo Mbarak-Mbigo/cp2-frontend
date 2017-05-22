@@ -21,7 +21,6 @@ export class BucketitemComponent implements OnInit {
 
   ngOnInit() {
     this.buckeItem = localStorage.getItem('bucketState');
-    console.log(this.buckeItem);
     this.loadAllBucketItems();
   }
 
@@ -33,7 +32,7 @@ export class BucketitemComponent implements OnInit {
       this.itemsList = responseData.items;
     },
     responseError => {
-      console.log(responseError)
+      this.alertService.error('Error occurred!')
     })
   }
 
@@ -41,8 +40,8 @@ export class BucketitemComponent implements OnInit {
     if (event.data){
       this.bucketlistService.updateBucketItem(event.url, event.data)
       .subscribe(responseData =>{
-        console.log(responseData);
-        this.loadAllBucketItems()
+        this.alertService.success('Bucket Item updated successfully');
+        this.loadAllBucketItems();
       })
     }else{
       this.alertService.error('Update data not provided!');
@@ -69,7 +68,6 @@ export class BucketitemComponent implements OnInit {
   }
 
   createBucketLisItem(data: string){
-    console.log(data);
     this.bucketlistService.createBucketItem(this.bucketList.url, data)
     .subscribe( responseData => {
       this.alertService.success('Item created successfully');
@@ -84,6 +82,18 @@ export class BucketitemComponent implements OnInit {
   backtoBuckets(){
     localStorage.setItem('bucketState', 'true');
     location.reload();
+  }
+
+  updateStatus(itemUrl:string, status: Boolean){
+    this.bucketlistService.udpateStatus(itemUrl, !status)
+    .subscribe( responseData => {
+      this.loadAllBucketItems();
+    },
+    errorData => {
+      this.alertService.error('Error occurred!');
+    }
+  );
+
   }
 
 }

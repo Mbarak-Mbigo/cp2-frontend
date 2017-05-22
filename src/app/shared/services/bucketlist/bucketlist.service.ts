@@ -83,4 +83,10 @@ export class BucketlistService {
       .map((bucketData_response: Response) => bucketData_response.json());
   }
 
+  udpateStatus(bucketItemUrl: string, status: Boolean){
+    return this.http.put(bucketItemUrl, {'done': status},
+      {headers: this.authorizationHeaders()})
+      .map((response: Response) => response.json());
+  };
+
 }

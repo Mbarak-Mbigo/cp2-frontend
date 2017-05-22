@@ -84,4 +84,16 @@ export class BucketitemComponent implements OnInit {
     location.reload();
   }
 
+  updateStatus(itemUrl:string, status: Boolean){
+    this.bucketlistService.udpateStatus(itemUrl, !status)
+    .subscribe( responseData => {
+      this.loadAllBucketItems();
+    },
+    errorData => {
+      this.alertService.error('Error occurred!');
+    }
+  );
+
+  }
+
 }

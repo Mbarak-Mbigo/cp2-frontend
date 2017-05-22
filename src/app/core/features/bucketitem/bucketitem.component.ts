@@ -13,10 +13,12 @@ import { BucketitemmodalComponent } from '../modals/bucketitemmodal/bucketitemmo
 export class BucketitemComponent implements OnInit {
   BucketList: any;
   itemsList: any;
-  constructor(private bucketlistService: BucketlistService, private route: ActivatedRoute) { }
+  constructor(private bucketlistService: BucketlistService,
+              private route: ActivatedRoute,
+              private alertService: AlertService) { }
 
   ngOnInit() {
-    this.loadAllBucketItems()
+    this.loadAllBucketItems();
   }
 
   loadAllBucketItems(){
@@ -29,6 +31,27 @@ export class BucketitemComponent implements OnInit {
     responseError => {
       console.log(responseError)
     })
+  }
+
+  updateItem(event: any){
+    if (event.data){
+      this.bucketlistService.updateBucketItem(event.url, event.data)
+      .subscribe(responseData =>{
+        console.log(responseData);
+        this.loadAllBucketItems()
+      })
+    }else{
+      this.alertService.error('Update data not provided!');
+    }
+  }
+
+  deleteItem(event: any){
+    console.log(event)
+
+  }
+
+  createItem(event: any){
+
   }
 
 }

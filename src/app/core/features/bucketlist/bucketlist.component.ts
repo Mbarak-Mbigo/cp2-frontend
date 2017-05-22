@@ -20,10 +20,16 @@ export class BucketListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.loadBuckets()
+    this.loadBuckets();
+    this.alertService.alertSearch()
+    .subscribe(searchData => {
+      let baseUrl = 'http://127.0.0.1:5000/api/v1/bucketlists/';
+      let searchUrl = baseUrl + '?q=' + searchData;
+      this.loadBuckets(searchUrl);
+    });
   }
 
-  loadBuckets(dataUrl?:string){
+  loadBuckets(dataUrl?:string, search?:boolean){
     this.bucketlistService.getAllBucketLists(dataUrl)
     .subscribe(bucketData => { this.allBuckets = bucketData['results'];
     this.next = bucketData.next;
@@ -59,7 +65,7 @@ export class BucketListComponent implements OnInit {
       this.alertService.success('Bucketlist updated successfully');
       this.loadBuckets();},
     responseError => {
-      this.alertService.success('Error occurred!');
+      this.alertService.error('Error occurred!');
     })
   };
 
@@ -69,7 +75,7 @@ export class BucketListComponent implements OnInit {
       this.alertService.success('Bucketlist created successfully');
       this.loadBuckets();},
     responseError => {
-      this.alertService.success('Error occurred!');
+      this.alertService.error('Error occurred!');
     })
   }
 
@@ -77,5 +83,4 @@ export class BucketListComponent implements OnInit {
     localStorage.removeItem('bucketState');
     location.reload();
   }
-
 }

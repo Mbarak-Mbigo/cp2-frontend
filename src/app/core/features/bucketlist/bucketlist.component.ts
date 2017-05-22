@@ -20,14 +20,24 @@ export class BucketListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.loadBuckets()
+    this.loadBuckets();
   }
 
   loadBuckets(dataUrl?:string){
     this.bucketlistService.getAllBucketLists(dataUrl)
     .subscribe(bucketData => { this.allBuckets = bucketData['results'];
     this.next = bucketData.next;
-    this.previous = bucketData.previous;});
+    this.previous = bucketData.previous;},
+    dataError => {
+      if(localStorage.getItem('accessToken')){
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('username');
+        this.alertService.error('Token Expired Login to Access!');
+        this.router.navigate(['login']);
+        location.reload();
+      }
+    }
+    );
   };
 
   getNext(){

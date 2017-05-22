@@ -46,7 +46,16 @@ export class BucketitemComponent implements OnInit {
   }
 
   deleteItem(event: any){
-    console.log(event)
+    this.bucketlistService.deleteBucketItem(event.url)
+    .subscribe( responseData => {
+      this.alertService.success('Delete Successful');
+      this.loadAllBucketItems();
+    },
+    errorData => {
+      this.alertService.error('Error occurred!');
+      this.loadAllBucketItems();
+    }
+  );
 
   }
 

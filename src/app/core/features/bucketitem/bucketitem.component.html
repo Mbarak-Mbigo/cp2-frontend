@@ -1,6 +1,8 @@
 <div class="">
-  <div>
-    <button id='item' (click)='createItemSignal()' class="btn btn-defualt">New Item</button>
+  <div *ngIf=!bucketItem >
+    <!-- <span class="btn btn-defualt item"><button></span>Buckets</button></span> -->
+    <a [routerLink]="['/dashboard/bucketlists']" class="btn btn-defualt item" (click)='backtoBuckets()'><span class="glyphicon glyphicon-triangle-left lg"></span>Buckets</a>
+    <a (click)='createItemSignal()' class="btn btn-defualt item">New Item</a>
   </div>
   <table class="table" *ngIf='BucketList'>
     <thead>

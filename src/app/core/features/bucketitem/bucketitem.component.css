@@ -1,5 +1,10 @@
-#item {
+.item {
   margin-top: -75px;
   margin-left: 10px;
   position: relative;
+}
+
+a:hover {
+  color: #040411;
+  background-color: #fff;
 }

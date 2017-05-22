@@ -14,11 +14,14 @@ declare var $:any;
 export class BucketitemComponent implements OnInit {
   bucketList: any;
   itemsList: any;
+  buckeItem;
   constructor(private bucketlistService: BucketlistService,
               private route: ActivatedRoute,
               private alertService: AlertService) { }
 
   ngOnInit() {
+    this.buckeItem = localStorage.getItem('bucketState');
+    console.log(this.buckeItem);
     this.loadAllBucketItems();
   }
 
@@ -76,6 +79,11 @@ export class BucketitemComponent implements OnInit {
       this.alertService.error('Error occurred!');
     }
   );
+  }
+
+  backtoBuckets(){
+    localStorage.setItem('bucketState', 'true');
+    location.reload();
   }
 
 }

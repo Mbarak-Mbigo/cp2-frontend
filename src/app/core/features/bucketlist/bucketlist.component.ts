@@ -69,4 +69,9 @@ export class BucketListComponent implements OnInit {
     })
   }
 
+  gotoItems(){
+    localStorage.removeItem('bucketState');
+    location.reload();
+  }
+
 }

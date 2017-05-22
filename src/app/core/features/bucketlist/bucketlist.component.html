@@ -1,12 +1,9 @@
-<!-- <h3>{{titleBucketList}}</h3> -->
 <div class="container-fluid">
   <ul class="thumbnails list-group">
     <li class="span4 col-md-3 list-group-item" *ngFor='let bucket of allBuckets'>
       <div class="thumbnail">
         <img data-src="holder.js/300x200" alt="">
         <h3><a [routerLink]="[bucket.id,'items']" (click)='gotoItems()'>{{bucket.name}}</a></h3>
-        <!-- <h3><a (click)='loadBucketItems(bucket.url)'>{{bucket.name}}</a></h3> -->
-        <!-- <p>Thumbnail caption...</p> -->
         <span>Created:</span>{{bucket.date_created | date: 'longDate'}}<br />
         <span>Modified:</span>{{bucket.date_modified  | date: 'longDate'}}<br />
         <app-bucketlistmodal (deleteBucket)='deleteBucketList($event)' (updateBucket)='updateBucketList($event)' (createBucket)='createBucketList($event)' [bucketUrl]='bucket.url' [bucketName]='bucket.name' [bucketId]='bucket.id'></app-bucketlistmodal>
@@ -14,8 +11,7 @@
     </li>
   </ul>
 </div>
-<div class="">
-
+<div>
   <nav aria-label="..." *ngIf='previous || next'>
     <ul class="pager">
       <li class="pager-item">

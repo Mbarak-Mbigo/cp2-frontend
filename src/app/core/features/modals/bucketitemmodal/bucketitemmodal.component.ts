@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-bucketitemmodal',
@@ -6,16 +6,13 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
   templateUrl: './bucketitemmodal.component.html',
   styleUrls: ['./bucketitemmodal.component.css']
 })
-export class BucketitemmodalComponent implements OnInit {
+
+export class BucketitemmodalComponent {
   @Output() deleteItem = new EventEmitter();
   @Output() updateItem = new EventEmitter();
   @Input() itemId: Number;
   @Input() itemName: string;
   @Input() itemUrl: string;
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   deleteBucketItem(){
     this.deleteItem.emit({event: event, url: this.itemUrl})

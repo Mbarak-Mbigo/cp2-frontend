@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
 
 import { BucketlistService } from '../../../shared/services/bucketlist/bucketlist.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { BucketlistmodalComponent } from '../modals/bucketlistmodal/bucketlistmodal.component';
+declare var $:any;
 
 @Component({
   selector: 'app-bucketlist',
@@ -11,30 +13,48 @@ import { BucketlistmodalComponent } from '../modals/bucketlistmodal/bucketlistmo
   styleUrls: ['./bucketlist.component.css']
 })
 export class BucketListComponent implements OnInit {
-  titleBucketList: string = 'My Bucketlists'
+  subscription: Subscription;
   allBuckets: any;
   next: any;
   previous: any;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
-              private router: Router) { }
+              private router: Router) {
+    // subscribe to alertservice component messages
+    this.subscription = this.alertService.alertCreateBucketList()
+      .subscribe(
+        alertSignal =>{
+          let bucketId = '#createBucket';
+          $(bucketId).modal('show');
+        });
+
+    this.alertService.alertSearch()
+      .subscribe(searchData => {
+        this.searchBuckets(searchData);
+      });
+  }
 
   ngOnInit() {
     this.loadBuckets();
-    this.alertService.alertSearch()
-    .subscribe(searchData => {
-      let baseUrl = 'http://127.0.0.1:5000/api/v1/bucketlists/';
-      let searchUrl = baseUrl + '?q=' + searchData;
-      this.loadBuckets(searchUrl);
-    });
   }
 
   loadBuckets(dataUrl?:string, search?:boolean){
     this.bucketlistService.getAllBucketLists(dataUrl)
-    .subscribe(bucketData => { this.allBuckets = bucketData['results'];
-    this.next = bucketData.next;
-    this.previous = bucketData.previous;});
-  };
+      .subscribe(bucketData => {
+        this.allBuckets = bucketData['results'];
+        this.next = bucketData.next;
+        this.previous = bucketData.previous;
+    },
+    errorResponse => {
+      if( localStorage.getItem('accessToken') && errorResponse.status === 401){
+        // token expired remove it and redirect to login page
+        this.alertService.error('Session expired, login to access');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('username');
+        this.router.navigate(['/login']);
+      }
+    }
+  );};
 
   getNext(){
     this.loadBuckets(this.next)
@@ -43,10 +63,6 @@ export class BucketListComponent implements OnInit {
   getPrevious(){
     this.loadBuckets(this.previous)
   };
-
-  // loadBucketItems(bucketUrl: string){
-  //   this.bucketlistService.getBucketItems(bucketUrl);
-  // };
 
   deleteBucketList(event: any){
     this.bucketlistService.deleteBucketList(event.data)
@@ -69,18 +85,38 @@ export class BucketListComponent implements OnInit {
     })
   };
 
-  createBucketList(event: any){
-    this.bucketlistService.createBucketList(event.data)
-    .subscribe(responseData => {
-      this.alertService.success('Bucketlist created successfully');
-      this.loadBuckets();},
-    responseError => {
-      this.alertService.error('Error occurred!');
-    })
-  }
+  createBucketList(data: string) {
+    if (data){
+      this.bucketlistService.createBucketList(data)
+      .subscribe(responseData => {
+        this.alertService.success('Bucketlist created successfully');
+        this.loadBuckets();},
+      responseError => {
+        this.alertService.error('Error occurred!');
+      })
+    }else{
+      this.alertService.error('Update information not provided');
+    }
+  };
 
   gotoItems(){
     localStorage.removeItem('bucketState');
     location.reload();
+  };
+
+  searchBuckets(searchQuery: string){
+    let baseUrl = 'http://127.0.0.1:5000/api/v1/bucketlists/';
+    let searchUrl = baseUrl + '?q=' + searchQuery;
+    this.bucketlistService.getAllBucketLists(searchUrl)
+    .subscribe(searchData =>{
+      this.allBuckets = searchData['results'];
+      this.next = searchData.next;
+      this.previous = searchData.previous;
+    },
+    searchError => {
+      this.alertService.error('No results matching your search Query');
+      this.allBuckets = [];
+    }
+  );
   }
 }

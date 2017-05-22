@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AlertService } from '../../../../shared/services/alert/alert.service';
@@ -11,7 +11,7 @@ declare var $:any;
   inputs: ['bucketName', 'bucketUrl']
 })
 
-export class BucketlistmodalComponent implements OnInit {
+export class BucketlistmodalComponent {
   subscription: Subscription;
   @Output() deleteBucket = new EventEmitter();
   @Output() updateBucket = new EventEmitter();
@@ -29,9 +29,6 @@ export class BucketlistmodalComponent implements OnInit {
         $(bucketId).modal('show');
       }
     )
-  }
-
-  ngOnInit() {
   }
 
   deleteBucketList(bucketUrl: string){

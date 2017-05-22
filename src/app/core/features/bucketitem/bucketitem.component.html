@@ -29,7 +29,7 @@
           <span>Created:</span>{{item.date_created | date: 'longDate'}}<br />
           <span>Modified:</span>{{item.date_modified | date: 'longDate'}}<br />
           <span>Done:</span>{{item.done}}<br />
-          <!-- <modal-buckteItem (updateItem)="updateItem(item.url, $event)" (itemDelete)="deleteItem(itemId)" [itemId]='item.id'[itemName]='item.name' [itemUrl]='item.url'></modal-buckteItem> -->
+          <app-bucketitemmodal (updateItem)="updateItem($event)" (deleteItem)="deleteItem($event)" [itemId]='item.id'[itemName]='item.name' [itemUrl]='item.url'></app-bucketitemmodal>
         </div>
       </li>
     </ul>

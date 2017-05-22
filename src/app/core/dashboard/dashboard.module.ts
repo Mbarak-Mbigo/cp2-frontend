@@ -21,6 +21,7 @@ import { BucketitemComponent } from '../features/bucketitem/bucketitem.component
     BucketListComponent,
     DashboardnavComponent,
     BucketlistmodalComponent,
+    BucketitemmodalComponent,
     BucketitemComponent
   ],
   providers: [BucketlistService],

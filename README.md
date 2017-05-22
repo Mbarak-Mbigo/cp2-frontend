@@ -1,6 +1,8 @@
 # Cp2Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+Is a frontend web application built using Angular 2 an ES6.
+It consume BucketList API
+Part of this documentation was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
 
 ## Development server
 

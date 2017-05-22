@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, AfterContentChecked } from "@angular/core";
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,12 +12,13 @@ declare var $:any;
   templateUrl: './bucketlist.component.html',
   styleUrls: ['./bucketlist.component.css']
 })
-export class BucketListComponent implements OnInit {
+export class BucketListComponent implements OnInit, AfterContentChecked {
   subscription: Subscription;
   titleBucketList: string = 'My Bucketlists'
   allBuckets: any;
   next: any;
   previous: any;
+  noContent: Boolean = false;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
               private router: Router) {
@@ -33,10 +34,18 @@ export class BucketListComponent implements OnInit {
       .subscribe(searchData => {
         this.searchBuckets(searchData);
       });
-}
+  }
 
   ngOnInit() {
     this.loadBuckets();
+  }
+
+  ngAfterContentChecked(){
+    if (!this.allBuckets){
+      this.noContent = true;
+    }else{
+      this.noContent = false;
+    }
   }
 
   loadBuckets(dataUrl?:string, search?:boolean){
@@ -54,7 +63,6 @@ export class BucketListComponent implements OnInit {
         localStorage.removeItem('username');
         this.router.navigate(['/login']);
       }
-      this.alertService.error('Error occured!');
     }
   );};
 

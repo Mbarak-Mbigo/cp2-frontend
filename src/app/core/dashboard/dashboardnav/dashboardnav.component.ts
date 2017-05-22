@@ -7,6 +7,7 @@ import { AlertService } from '../../../shared/services/alert/alert.service';
   styleUrls: ['./dashboardnav.component.css']
 })
 export class DashboardnavComponent implements OnInit {
+  bucketState = localStorage.getItem('bucketState');
   username: string = localStorage.getItem('username');
   constructor(private alertService: AlertService) {}
 

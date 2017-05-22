@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BucketlistService } from '../../../shared/services/bucketlist/bucketlist.service';
 import { AlertService } from '../../../shared/services/alert/alert.service';
 import { BucketitemmodalComponent } from '../modals/bucketitemmodal/bucketitemmodal.component';
+declare var $:any;
 
 @Component({
   selector: 'app-bucketitem',
@@ -11,7 +12,7 @@ import { BucketitemmodalComponent } from '../modals/bucketitemmodal/bucketitemmo
   styleUrls: ['./bucketitem.component.css']
 })
 export class BucketitemComponent implements OnInit {
-  BucketList: any;
+  bucketList: any;
   itemsList: any;
   constructor(private bucketlistService: BucketlistService,
               private route: ActivatedRoute,
@@ -25,7 +26,7 @@ export class BucketitemComponent implements OnInit {
     let bucketId = this.route.snapshot.params.id;
     this.bucketlistService.getBucketItems(this.route.snapshot.params.id)
     .subscribe(responseData => {
-      this.BucketList = responseData;
+      this.bucketList = responseData;
       this.itemsList = responseData.items;
     },
     responseError => {
@@ -59,8 +60,22 @@ export class BucketitemComponent implements OnInit {
 
   }
 
-  createItem(event: any){
+  createItemSignal(){
+    let bucketItemId = '#createItem';
+    $(bucketItemId).modal('show');
+  }
 
+  createBucketLisItem(data: string){
+    console.log(data);
+    this.bucketlistService.createBucketItem(this.bucketList.url, data)
+    .subscribe( responseData => {
+      this.alertService.success('Item created successfully');
+      this.loadAllBucketItems();
+    },
+    errorData => {
+      this.alertService.error('Error occurred!');
+    }
+  );
   }
 
 }

@@ -18,7 +18,6 @@ export class BucketListComponent implements OnInit {
   allBuckets: any;
   next: any;
   previous: any;
-  noContent: Boolean = false;
   constructor(private bucketlistService: BucketlistService,
               private alertService : AlertService,
               private router: Router) {
@@ -56,8 +55,8 @@ export class BucketListComponent implements OnInit {
         localStorage.removeItem('username');
         this.router.navigate(['/login']);
       }
-    }
-  );};
+    })
+  };
 
   getNext(){
     this.loadBuckets(this.next)

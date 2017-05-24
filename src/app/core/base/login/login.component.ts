@@ -13,7 +13,6 @@ import { AuthService } from '../../../shared/services/authservice/auth.service';
 export class LoginComponent implements OnInit {
   userLoginForm: FormGroup;
   user: string;
-  loading = false;
   returnUrl: string;
   constructor(
         private formBuilder: FormBuilder,
@@ -45,9 +44,9 @@ export class LoginComponent implements OnInit {
           },
           registerError =>{
             // on login fail
+            this.userLoginForm.reset();
             this.alertService.error('Invalid Username or Password');
             this.user = null;
-            this.loading = false;
           });
   }
 

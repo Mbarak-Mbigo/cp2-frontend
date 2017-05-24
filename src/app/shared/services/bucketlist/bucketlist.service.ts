@@ -93,6 +93,7 @@ export class BucketlistService {
   }
 
   private errorHandler(error: Response){
+    console.log('error capture here', error)
     return Observable.throw(error || 'Server Error');
   }
 

@@ -1,4 +1,4 @@
-<div class='col-md-6 col-md-offset-3'>
+<div class='col-md-6 col-md-offset-3 container-fluid'>
   <h3>User Registration</h3>
   <form [formGroup]="userRegisterForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="form-group">
@@ -14,9 +14,9 @@
       <input type="password" class="form-control" formControlName="password" placeholder="password"/>
     </div>
 
-    <div class="container">
+    <div class="container-fluid col-md-6 col-md-offset-3">
       <button [disabled]="!userRegisterForm.valid" type="submit" class="btn btn-primary">Register</button>
-      <a routerLink='/home' routerLinkActive='active' class="btn btn-primary">Cancel Registration</a>
+      <a routerLink='/home' routerLinkActive='active' class="btn btn-primary pull-right">Cancel Registration</a>
     </div>
   </form>
 </div>

@@ -54,11 +54,9 @@ export class BucketListComponent implements OnInit {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('username');
         this.router.navigate(['/login']);
-      }else{
-        this.alertService.error(errorResponse);
       }
-    }
-  );};
+    })
+  };
 
   getNext(){
     this.loadBuckets(this.next)
